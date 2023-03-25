@@ -11,7 +11,7 @@ export default async function commandTikTok(
   io,
   cooldown
 ) {
-  if (!["adrian1g__", "3xanax"].includes(channelClean)) {
+  if (!["adrian1g__", "3xanax", "grubamruwa"].includes(channelClean)) {
     return null;
   }
 
@@ -84,6 +84,7 @@ export default async function commandTikTok(
     user_login: user,
     amount: args[1],
     type: argumentClean,
+    channel: channelClean,
   });
 
   return `${user}, przesyła ${Names(argumentClean)} x${

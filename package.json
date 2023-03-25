@@ -5,16 +5,16 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/YFLUpdates/ttvupdates.git"
+    "url": "git+https://github.com/YFLUpdates/TTVUpdates.git"
   },
   "type": "module",
   "scripts": {
     "start": "node index.js"
   },
   "bugs": {
-    "url": "https://github.com/YFLUpdates/ttvupdates/issues"
+    "url": "https://github.com/YFLUpdates/TTVUpdates/issues"
   },
-  "homepage": "https://github.com/YFLUpdates/ttvupdates#readme",
+  "homepage": "https://github.com/YFLUpdates/TTVUpdates#readme",
   "keywords": [
     "twitch",
     "bot",

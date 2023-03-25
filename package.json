@@ -1,0 +1,47 @@
+{
+  "name": "ttvupdates",
+  "version": "2.0.0",
+  "description": "Twitch bot with functions similar to LewusBot",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YFLUpdates/ttvupdates.git"
+  },
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "bugs": {
+    "url": "https://github.com/YFLUpdates/ttvupdates/issues"
+  },
+  "homepage": "https://github.com/YFLUpdates/ttvupdates#readme",
+  "keywords": [
+    "twitch",
+    "bot",
+    "tmi",
+    "xspeedyq",
+    "dobrypt",
+    "adrian1g__",
+    "yfl",
+    "yflupdates",
+    "grubamruwa",
+    "mrdzinold"
+  ],
+  "author": "3xanax",
+  "license": "MIT",
+  "dependencies": {
+    "@twurple/api": "^6.0.9",
+    "@twurple/auth": "^6.0.9",
+    "@twurple/chat": "^6.0.9",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "http": "^0.0.1-security",
+    "humanize-duration": "^3.28.0",
+    "jsdom": "^21.1.1",
+    "lodash": "^4.17.21",
+    "mathjs": "^11.7.0",
+    "mysql": "^2.18.1",
+    "sha256": "^0.2.0",
+    "socket.io": "^4.6.1"
+  }
+}

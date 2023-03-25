@@ -2,7 +2,6 @@ import pointsToVoid from "../../apis/yfles/updates/pointsToVoid.js";
 import userData from "../../apis/yfles/userData.js";
 import Names from "../../components/TikTok/Names.js";
 import Prices from "../../components/TikTok/Prices.js";
-import cooldownsList from "../../components/cooldownsList.js";
 
 export default async function commandTikTok(
   user,

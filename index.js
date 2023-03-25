@@ -33,6 +33,7 @@ import {
   commandChatters,
   commandZjeb,
   commandPermy,
+  commandAvatar,
 } from "./command/index.js";
 import {
   commandKsiezniczki,
@@ -939,6 +940,23 @@ chatClient.onMessage(async (channel, user, msg, tags) => {
         channel,
         `Build name: ${process.env.npm_package_name} - version: ${process.env.npm_package_version}`
       );
+
+      break;
+    }
+    case "avatar": {
+      const command = await commandAvatar(
+        user,
+        argumentClean,
+        channelClean,
+        api,
+        session_settings[channelClean].cooldowns
+      );
+
+      if (command === null) {
+        break;
+      }
+
+      chatClient.say(channel, command);
 
       break;
     }

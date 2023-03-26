@@ -631,6 +631,7 @@ chatClient.onMessage(async (channel, user, msg, tags) => {
       const command = await commandWiek(
         user,
         argumentClean,
+        channelClean,
         session_settings[channelClean].cooldowns
       );
       if (command === null) {
@@ -982,6 +983,7 @@ chatClient.onMessage(async (channel, user, msg, tags) => {
       const command = await commandLove(
         user,
         argumentClean,
+        channelClean,
         session_settings[channelClean].cooldowns
       );
 

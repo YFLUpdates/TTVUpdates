@@ -9,6 +9,9 @@ export default async function commandWatchtime(
   args,
   cooldown
 ) {
+
+  if(["xspeedyq", "grubamruwa", "dobrycsgo", "mrdzinold", "xmerghani", "xkaleson", "neexcsgo", "banduracartel", "shavskyyy"].includes(channelClean)) return null;
+
   if (cooldown.longer > Date.now() - cooldownsList("longer")) {
     return null;
   }

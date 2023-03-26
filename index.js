@@ -61,6 +61,7 @@ import {
   commandDuel,
   commandRoulette,
 } from "./command/Hazard/index.js";
+import {  commandMarry, commandLove} from "./command/Percentage/index.js";
 import SelectStreams from "./components/SMP/SelectStreams.js";
 import SubscriptionReward from "./components/SubscriptionReward.js";
 import { botToken, insertActions, subInsert } from "./apis/database/index.js";
@@ -289,8 +290,6 @@ chatClient.onMessage(async (channel, user, msg, tags) => {
 
   //TODO
   //!gdzie - temp do sierpnia
-  //!love
-  //!marry
   //!mogemoda
   //!gw
   //!module
@@ -950,6 +949,39 @@ chatClient.onMessage(async (channel, user, msg, tags) => {
         argumentClean,
         channelClean,
         api,
+        session_settings[channelClean].cooldowns
+      );
+
+      if (command === null) {
+        break;
+      }
+
+      chatClient.say(channel, command);
+
+      break;
+    }
+    case "slub":
+    case "marry": {
+      const command = await commandMarry(
+        user,
+        argumentClean,
+        channelClean,
+        api,
+        session_settings[channelClean].cooldowns
+      );
+
+      if (command === null) {
+        break;
+      }
+
+      chatClient.say(channel, command);
+
+      break;
+    }
+    case "love": {
+      const command = await commandLove(
+        user,
+        argumentClean,
         session_settings[channelClean].cooldowns
       );
 

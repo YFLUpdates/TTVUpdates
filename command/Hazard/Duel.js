@@ -10,7 +10,8 @@ export default async function commandDuel(
   channelClean,
   args,
   session_settings,
-  cooldown
+  cooldown,
+  modules
 ) {
   if (
     ["mrdzinold", "xmerghani", "mork", "neexcsgo", "banduracartel"].includes(
@@ -107,6 +108,9 @@ export default async function commandDuel(
     return null;
   }
   cooldown.longer = Date.now();
+
+  if (modules.modules["duels"] === false)
+    return `${user}, pojedynki zostały wyłączone. `;
 
   if (!argumentClean || argumentClean === user) {
     return `${user}, zapomniałeś podać osobe TPFufun `;

@@ -4,9 +4,18 @@ import multiplyList from "../../components/Dice/multiplyList.js";
 import pointsToVoid from "../../apis/yfles/updates/pointsToVoid.js";
 import cooldownsList from "../../components/cooldownsList.js";
 
-export default async function commandDice(user, argumentClean, channelClean, cooldown) {
-
-  if (["mrdzinold", "xmerghani", "mork", "neexcsgo", "banduracartel"].includes(channelClean)) {
+export default async function commandDice(
+  user,
+  argumentClean,
+  channelClean,
+  cooldown,
+  modules
+) {
+  if (
+    ["mrdzinold", "xmerghani", "mork", "neexcsgo", "banduracartel"].includes(
+      channelClean
+    )
+  ) {
     return null;
   }
 
@@ -14,6 +23,9 @@ export default async function commandDice(user, argumentClean, channelClean, coo
     return null;
   }
   cooldown.longer = Date.now();
+
+  if (modules.modules["dice"] === false)
+    return `${user}, kostki zostały wyłączone. `;
 
   if (!argumentClean) {
     return `${user}, zapomniałeś/aś o kwocie `;

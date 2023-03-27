@@ -6,7 +6,6 @@ import express from "express";
 import http from "http";
 import { Server } from "socket.io";
 
-import { promises as fs } from "fs";
 import dotenv from "dotenv";
 
 //Commands
@@ -61,13 +60,14 @@ import {
   commandDuel,
   commandRoulette,
 } from "./command/Hazard/index.js";
-import {  commandMarry, commandLove} from "./command/Percentage/index.js";
+import { commandMarry, commandLove } from "./command/Percentage/index.js";
 import SelectStreams from "./components/SMP/SelectStreams.js";
 import SubscriptionReward from "./components/SubscriptionReward.js";
 import { botToken, insertActions, subInsert } from "./apis/database/index.js";
 import PointsEarning from "./components/PointsEarning.js";
 import cooldownsList from "./components/cooldownsList.js";
 import updateBotToken from "./apis/database/updateBotToken.js";
+import commandModules from "./command/Admin/Modules.js";
 dotenv.config();
 
 const app = express();
@@ -87,15 +87,15 @@ let YFLSMP = {
   streams: [],
 };
 const channels = ["3xanax", "adrian1g__","grubamruwa","xspeedyq","dobrycsgo","mrdzinold","xmerghani","xkaleson","neexcsgo","banduracartel","sl3dziv","xmevron","shavskyyy","grabyyolo","tuszol","1wron3k","mejnyy"];
-// const channels = ["3xanax"];
+//const channels = ["3xanax"];
 const clientId = process.env.TWITCH_CLIENT_ID;
 const clientSecret = process.env.TWITCH_CLIENT_SECRET;
 let tokenData = {};
 
 await token();
-async function token(){
+async function token() {
   const request = await botToken();
-  if(request === null){
+  if (request === null) {
     await token();
   }
 
@@ -106,13 +106,8 @@ const authProvider = new RefreshingAuthProvider(
   {
     clientId,
     clientSecret,
-    onRefresh: async (userId, newTokenData) => await updateBotToken(newTokenData),
-    // onRefresh: async (userId, newTokenData) =>
-    //   await fs.writeFile(
-    //     `./tokens.${userId}.json`,
-    //     JSON.stringify(newTokenData, null, 4),
-    //     "UTF-8"
-    //   ),
+    onRefresh: async (userId, newTokenData) =>
+      await updateBotToken(newTokenData),
   },
   tokenData
 );
@@ -292,7 +287,6 @@ chatClient.onMessage(async (channel, user, msg, tags) => {
   //!gdzie - temp do sierpnia
   //!mogemoda
   //!gw
-  //!module
   //!losowanie
   switch (command) {
     case "opluj": {
@@ -539,7 +533,8 @@ chatClient.onMessage(async (channel, user, msg, tags) => {
       const command = await commandTop3(
         user,
         argumentClean,
-        session_settings[channelClean].cooldowns
+        session_settings[channelClean].cooldowns,
+        session_settings[channelClean]
       );
       if (command === null) {
         break;
@@ -632,7 +627,8 @@ chatClient.onMessage(async (channel, user, msg, tags) => {
         user,
         argumentClean,
         channelClean,
-        session_settings[channelClean].cooldowns
+        session_settings[channelClean].cooldowns,
+        session_settings[channelClean]
       );
       if (command === null) {
         break;
@@ -879,7 +875,8 @@ chatClient.onMessage(async (channel, user, msg, tags) => {
         user,
         argumentClean,
         channelClean,
-        session_settings[channelClean].cooldowns
+        session_settings[channelClean].cooldowns,
+        session_settings[channelClean]
       );
 
       if (command === null) {
@@ -898,7 +895,8 @@ chatClient.onMessage(async (channel, user, msg, tags) => {
         argumentClean,
         channelClean,
         args,
-        session_settings[channelClean].cooldowns
+        session_settings[channelClean].cooldowns,
+        session_settings[channelClean]
       );
 
       if (command === null) {
@@ -917,7 +915,8 @@ chatClient.onMessage(async (channel, user, msg, tags) => {
         channelClean,
         args,
         session_settings,
-        session_settings[channelClean].cooldowns
+        session_settings[channelClean].cooldowns,
+        session_settings[channelClean]
       );
 
       if (command === null) {
@@ -985,6 +984,30 @@ chatClient.onMessage(async (channel, user, msg, tags) => {
         argumentClean,
         channelClean,
         session_settings[channelClean].cooldowns
+      );
+
+      if (command === null) {
+        break;
+      }
+
+      chatClient.say(channel, command);
+
+      break;
+    }
+    case "modules":
+    case "module": {
+      const userInfo = tags.userInfo;
+      const { isMod, isBroadcaster } = userInfo;
+      const isModUp = isBroadcaster || isMod;
+
+      const command = await commandModules(
+        user,
+        argumentClean,
+        channelClean,
+        args,
+        isModUp,
+        io,
+        session_settings[channelClean]
       );
 
       if (command === null) {

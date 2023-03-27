@@ -1,11 +1,13 @@
 import Xayopl from "../../apis/watchtime/Xayo.js";
 import cooldownsList from "../../components/cooldownsList.js";
 
-export default async function commandWatchtime(user, argumentClean, cooldown) {
+export default async function commandWatchtime(user, argumentClean, cooldown, modules) {
   if (cooldown.longer > Date.now() - cooldownsList("longer")) {
     return null;
   }
   cooldown.longer = Date.now();
+
+  if(modules.modules["top3"] === false) return `${user}, Top3 zostało wyłączone. `;
 
   const userName = argumentClean ? argumentClean : user;
   const viewer = await Xayopl(userName);

@@ -10,7 +10,8 @@ export default async function commandRoulette(
   argumentClean,
   channelClean,
   args,
-  cooldown
+  cooldown,
+  modules
 ) {
   if (
     ["mrdzinold", "xmerghani", "mork", "neexcsgo", "banduracartel"].includes(
@@ -24,6 +25,9 @@ export default async function commandRoulette(
     return null;
   }
   cooldown.longer = Date.now();
+
+  if (modules.modules["roulette"] === false)
+    return `${user}, ruletka została wyłączona. `;
 
   if (
     !argumentClean ||
@@ -75,6 +79,7 @@ export default async function commandRoulette(
     return `${user}, nie udało sie zaktualizować punktów użytkownika. `;
   }
 
-  return `${user}, wygrałeś/aś ${winPrize} punktów okurwa FIRE - ${emojisList(winnerColor)}`;
-
+  return `${user}, wygrałeś/aś ${winPrize} punktów okurwa FIRE - ${emojisList(
+    winnerColor
+  )}`;
 }

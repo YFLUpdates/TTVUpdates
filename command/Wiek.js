@@ -101,12 +101,14 @@ const dinozaurs = [
 // Bardzo możliwe że gdzieś się jebnąłem
 // source: https://github.com/lewuss/TwitchAgeGuesser
 
-export default async function commandWiek(user, argumentClean, channelClean, cooldown) {
+export default async function commandWiek(user, argumentClean, channelClean, cooldown, modules) {
   if(["mrdzinold"].includes(channelClean)) return null;
   if (cooldown.classic > Date.now() - cooldownsList("classic")) {
     return null;
   }
   cooldown.classic = Date.now();
+
+  if(modules.modules["wiek"] === false) return `${user}, Wiek został wyłączony. `;
 
   const userName = argumentClean ? argumentClean : user;
   const userData = await userInfo(userName);

@@ -54,6 +54,7 @@ import {
   commandMed,
   commandConnectDC,
   commandTikTok,
+  commandSMP,
 } from "./command/adrian1g/index.js";
 import {
   commandDice,
@@ -1008,6 +1009,24 @@ chatClient.onMessage(async (channel, user, msg, tags) => {
         isModUp,
         io,
         session_settings[channelClean]
+      );
+
+      if (command === null) {
+        break;
+      }
+
+      chatClient.say(channel, command);
+
+      break;
+    }
+    case "yflsmp":
+    case "smp": {
+
+      const command = await commandSMP(
+        user,
+        channelClean,
+        YFLSMP,
+        session_settings[channelClean].cooldowns
       );
 
       if (command === null) {

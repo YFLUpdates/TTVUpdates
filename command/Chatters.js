@@ -22,7 +22,7 @@ export default async function commandChatters(
   }
 
   const chatters = await api.chat
-    .getChatters(getChannelID, "815978731", { limit: 1000 })
+    .getChattersPaginated(getChannelID, "815978731").getTotalCount()
     .catch((e) => {
       return null;
     });
@@ -31,5 +31,5 @@ export default async function commandChatters(
     return `${user}, nie posiadam moderatora, nie jestem w stanie pobrać osób na czacie.`;
   }
 
-  return `Current Chatters: ${chatters.data.length}`;
+  return `Current Chatters: ${chatters}`;
 }

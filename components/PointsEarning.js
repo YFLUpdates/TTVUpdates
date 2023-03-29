@@ -31,7 +31,7 @@ export default async function PointsEarning(channels, api) {
       liveChannels.push(i.userName);
 
       const chatters = await api.chat
-        .getChatters(i.userId, "815978731", { limit: 1000 })
+        .getChattersPaginated(i.userId, "815978731").getAll()
         .catch((e) => {
           return null;
         });
@@ -43,7 +43,7 @@ export default async function PointsEarning(channels, api) {
       await waitforme(randomNumber(60000, 240000));
 
       await Promise.all(
-        chatters.data.map(async (x) => {
+        chatters.map(async (x) => {
           if (botAccounts.includes(x.userName)) return;
 
           await waitforme(300);
@@ -68,7 +68,7 @@ export default async function PointsEarning(channels, api) {
       }
 
       const chatters = await api.chat
-        .getChatters(i.id, "815978731", { limit: 1000 })
+        .getChattersPaginated(i.id, "815978731").getAll()
         .catch((e) => {
           return null;
         });
@@ -80,7 +80,7 @@ export default async function PointsEarning(channels, api) {
       await waitforme(randomNumber(60000, 240000));
 
       await Promise.all(
-        chatters.data.map(async (x) => {
+        chatters.map(async (x) => {
           if (botAccounts.includes(x.userName)) return;
 
           await waitforme(300);

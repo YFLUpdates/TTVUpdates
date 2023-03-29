@@ -11,13 +11,18 @@ export default async function commandZaprasza(
     return null;
   }
   cooldown.classic = Date.now();
+
+  if (argumentClean && argumentClean.length >= 3) {
+    return `${user} zaprasza ${argumentClean} na kamerki jasperM`;
+  }
+
   const getChannelID = await api.users
     .getUserByName(channelClean)
     .catch((e) => {
       return null;
     });
   const chatters = await api.chat
-    .getChatters(getChannelID, "815978731", { limit: 1000 })
+    .getChattersPaginated(getChannelID, "815978731").getAll()
     .catch((e) => {
       return null;
     });
@@ -26,12 +31,8 @@ export default async function commandZaprasza(
     return `${user}, nie posiadam moderatora, nie jestem w stanie pobrać osób na czacie.`;
   }
 
-  if (argumentClean && argumentClean.length >= 3) {
-    return `${user} zaprasza ${argumentClean} na kamerki jasperM`;
-  }
-
   const random =
-    chatters.data[Math.floor(Math.random() * chatters.data.length)];
+    chatters[Math.floor(Math.random() * chatters.length)];
 
   return `${user} zaprasza ${random.userDisplayName} na kamerki jasperM`;
 }

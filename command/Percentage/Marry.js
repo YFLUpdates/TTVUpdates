@@ -15,23 +15,23 @@ export default async function commandMarry(
   }
   cooldown.classic = Date.now();
 
+  if(argumentClean){
+    return `${user} weźmie ślub z ${argumentClean} za ${humanizeDuration(randomNumber(1440, 1051200) * 60000, { language: "pl" })} jupijej`
+  }
+  
   const getChannelID = await api.users
     .getUserByName(channelClean)
     .catch((e) => {
       return null;
     });
   const chatters = await api.chat
-    .getChatters(getChannelID, "815978731", { limit: 1000 })
+    .getChattersPaginated(getChannelID, "815978731").getAll()
     .catch((e) => {
       return null;
     });
   if (chatters === null) {
     return `${user}, nie posiadam moderatora, nie jestem w stanie pobrać osób na czacie.`;
   }
-
-  if(argumentClean){
-    return `${user} weźmie ślub z ${argumentClean} za ${humanizeDuration(randomNumber(1440, 1051200) * 60000, { language: "pl" })} jupijej`
-  }
-  const random = chatters.data[Math.floor(Math.random() * chatters.data.length)];
+  const random = chatters[Math.floor(Math.random() * chatters.length)];
   return `${user} weźmie ślub z ${random.userDisplayName} za ${humanizeDuration(randomNumber(1440, 1051200) * 60000, { language: "pl" })} jupijej `
 }

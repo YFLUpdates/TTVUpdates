@@ -25,7 +25,7 @@ export default async function commandKto(
       return null;
     });
   const chatters = await api.chat
-    .getChatters(getChannelID, "815978731", { limit: 1000 })
+    .getChattersPaginated(getChannelID, "815978731").getAll()
     .catch((e) => {
       return null;
     });
@@ -36,7 +36,7 @@ export default async function commandKto(
   }
 
   await Promise.all(
-    chatters.data.map((i) => {
+    chatters.map((i) => {
       if (famous.includes(i.userDisplayName)) {
         if (i.userDisplayName === channelClean) return;
 

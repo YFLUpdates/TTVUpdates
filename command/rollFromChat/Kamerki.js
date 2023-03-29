@@ -17,7 +17,7 @@ export default async function commandKamerki(
       return null;
     });
   const chatters = await api.chat
-    .getChatters(getChannelID, "815978731", { limit: 1000 })
+    .getChattersPaginated(getChannelID, "815978731").getAll()
     .catch((e) => {
       return null;
     });
@@ -25,7 +25,7 @@ export default async function commandKamerki(
   if (chatters === null) {
     return `${user}, nie posiadam moderatora, nie jestem w stanie pobrać osób na czacie.`;
   }
-  const shuffled = [...chatters.data].sort(() => 0.5 - Math.random());
+  const shuffled = [...chatters].sort(() => 0.5 - Math.random());
   const rolled = shuffled.slice(0, 2);
 
   return `${rolled[0].userDisplayName} i ${rolled[1].userDisplayName} bawią się na kamerkach jasperBoobsy`;

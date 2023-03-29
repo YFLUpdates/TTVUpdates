@@ -12,13 +12,17 @@ export default async function commandCalus(
   }
   cooldown.classic = Date.now();
   
+  if (argumentClean && argumentClean.length >= 3) {
+    return `${user} daje całusa ${argumentClean} yoooo `;
+  }
+  
   const getChannelID = await api.users
     .getUserByName(channelClean)
     .catch((e) => {
       return null;
     });
   const chatters = await api.chat
-    .getChatters(getChannelID, "815978731", { limit: 1000 })
+    .getChattersPaginated(getChannelID, "815978731").getAll()
     .catch((e) => {
       return null;
     });
@@ -27,12 +31,8 @@ export default async function commandCalus(
     return `${user}, nie posiadam moderatora, nie jestem w stanie pobrać osób na czacie.`;
   }
 
-  if (argumentClean && argumentClean.length >= 3) {
-    return `${user} daje całusa ${argumentClean} yoooo `;
-  }
-
   const random =
-    chatters.data[Math.floor(Math.random() * chatters.data.length)];
+    chatters[Math.floor(Math.random() * chatters.length)];
 
   return `${user} daje całusa ${random.userDisplayName} yoooo `;
 }

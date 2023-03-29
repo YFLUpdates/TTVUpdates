@@ -61,7 +61,7 @@ export default async function commandTikTok(
     return `${user}, maksymalnie można przesłać 10000 hehe`;
   }
 
-  const viewer = userData(user, channelClean);
+  const viewer = await userData(user, channelClean);
 
   if (viewer === null) {
     return `${user}, nie udało sie pobrać danych użytkownika.`;

@@ -10,6 +10,10 @@ export default async function commandPoints(
   args,
   cooldown
 ) {
+  if (["mrdzinold", "xmerghani", "banduracartel"].includes(channelClean)) {
+    return null;
+  }
+  
   if (cooldown.classic > Date.now() - cooldownsList("classic")) {
     return null;
   }

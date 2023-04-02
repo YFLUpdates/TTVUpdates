@@ -9,9 +9,9 @@ export default async function commandWatchtime(user, argumentClean, cooldown, mo
 
   if(modules.modules["top3"] === false) return `${user}, Top3 zostało wyłączone. `;
 
-  if(argumentClean && argumentClean === "ziomiwan" || user === "ziomiwan" && !argumentClean){
-    return `BRUHBRUH Ulubieni streamerzy ziomiwan: kubx, meduska, amouranth`
-  }
+  // if(argumentClean && argumentClean === "ziomiwan" || user === "ziomiwan" && !argumentClean){
+  //   return `BRUHBRUH Ulubieni streamerzy ziomiwan: kubx, meduska, amouranth`
+  // }
 
   const userName = argumentClean ? argumentClean : user;
   const viewer = await Xayopl(userName);

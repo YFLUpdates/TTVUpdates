@@ -49,7 +49,7 @@ export default async function commandModules(
   }
 
   if(argumentClean === "list"){
-    return `${user}, dostępne moduły: duels, dice, roulette, top3, wiek`;
+    return `${user}, dostępne moduły: duels, dice, roulette, top3, wiek, tiktok`;
   }
 
   if(argumentClean === "clearduels"){

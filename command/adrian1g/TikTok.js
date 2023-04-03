@@ -9,7 +9,8 @@ export default async function commandTikTok(
   channelClean,
   args,
   io,
-  cooldown
+  cooldown,
+  modules
 ) {
   if (["mrdzinold", "xmerghani", "banduracartel"].includes(channelClean)) {
     return null;
@@ -19,6 +20,8 @@ export default async function commandTikTok(
     return null;
   }
   cooldown.tiktok = Date.now();
+
+  if(modules.modules["tiktok"] === false) return `${user}, TikToki zostały wyłączone. `;
 
   if (!argumentClean) {
     return `${user}, zapomniałeś/aś o rodzaju -> !tiktok list aha`;

@@ -3,7 +3,8 @@
         "modules": {
             "duels": false,
             "roulette": false,
-            "dice": false
+            "dice": false,
+            "tiktok": false
         },
         "duels_list": [],
         "cooldowns": {
@@ -22,7 +23,8 @@
         "modules": {
             "duels": false,
             "roulette": false,
-            "dice": false
+            "dice": false,
+            "tiktok": true
         },
         "duels_list": [],
         "cooldowns": {
@@ -41,7 +43,8 @@
         "modules": {
             "duels": false,
             "roulette": false,
-            "dice": false
+            "dice": false,
+            "tiktok": false
         },
         "duels_list": [],
         "cooldowns": {
@@ -60,7 +63,8 @@
         "modules": {
             "duels": false,
             "roulette": false,
-            "dice": false
+            "dice": false,
+            "tiktok": true
         },
         "duels_list": [],
         "cooldowns": {
@@ -79,7 +83,8 @@
         "modules": {
             "duels": false,
             "roulette": false,
-            "dice": false
+            "dice": false,
+            "tiktok": false
         },
         "duels_list": [],
         "cooldowns": {
@@ -98,7 +103,8 @@
         "modules": {
             "duels": false,
             "roulette": false,
-            "dice": false
+            "dice": false,
+            "tiktok": false
         },
         "duels_list": [],
         "cooldowns": {
@@ -117,7 +123,8 @@
         "modules": {
             "duels": false,
             "roulette": false,
-            "dice": false
+            "dice": false,
+            "tiktok": false
         },
         "duels_list": [],
         "cooldowns": {
@@ -136,7 +143,8 @@
         "modules": {
             "duels": false,
             "roulette": false,
-            "dice": false
+            "dice": false,
+            "tiktok": false
         },
         "duels_list": [],
         "cooldowns": {
@@ -155,7 +163,8 @@
         "modules": {
             "duels": false,
             "roulette": false,
-            "dice": false
+            "dice": false,
+            "tiktok": false
         },
         "duels_list": [],
         "cooldowns": {
@@ -174,7 +183,8 @@
         "modules": {
             "duels": false,
             "roulette": false,
-            "dice": false
+            "dice": false,
+            "tiktok": false
         },
         "duels_list": [],
         "cooldowns": {
@@ -193,7 +203,8 @@
         "modules": {
             "duels": false,
             "roulette": false,
-            "dice": false
+            "dice": false,
+            "tiktok": false
         },
         "duels_list": [],
         "cooldowns": {
@@ -212,7 +223,8 @@
         "modules": {
             "duels": false,
             "roulette": false,
-            "dice": false
+            "dice": false,
+            "tiktok": false
         },
         "duels_list": [],
         "cooldowns": {
@@ -231,7 +243,8 @@
         "modules": {
             "duels": false,
             "roulette": false,
-            "dice": false
+            "dice": false,
+            "tiktok": false
         },
         "duels_list": [],
         "cooldowns": {
@@ -250,7 +263,8 @@
         "modules": {
             "duels": false,
             "roulette": false,
-            "dice": false
+            "dice": false,
+            "tiktok": false
         },
         "duels_list": [],
         "cooldowns": {
@@ -269,7 +283,8 @@
         "modules": {
             "duels": false,
             "roulette": false,
-            "dice": false
+            "dice": false,
+            "tiktok": false
         },
         "duels_list": [],
         "cooldowns": {
@@ -288,7 +303,8 @@
         "modules": {
             "duels": false,
             "roulette": false,
-            "dice": false
+            "dice": false,
+            "tiktok": false
         },
         "duels_list": [],
         "cooldowns": {
@@ -307,7 +323,8 @@
         "modules": {
             "duels": false,
             "roulette": false,
-            "dice": false
+            "dice": false,
+            "tiktok": false
         },
         "duels_list": [],
         "cooldowns": {

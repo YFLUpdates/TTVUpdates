@@ -859,7 +859,8 @@ chatClient.onMessage(async (channel, user, msg, tags) => {
         channelClean,
         args,
         io,
-        session_settings[channelClean].cooldowns
+        session_settings[channelClean].cooldowns,
+        session_settings[channelClean]
       );
 
       if (command === null) {

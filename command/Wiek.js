@@ -103,6 +103,7 @@ const dinozaurs = [
 
 export default async function commandWiek(user, argumentClean, channelClean, cooldown, modules) {
   if(["mrdzinold"].includes(channelClean)) return null;
+
   if (cooldown.classic > Date.now() - cooldownsList("classic")) {
     return null;
   }
@@ -168,5 +169,5 @@ export default async function commandWiek(user, argumentClean, channelClean, coo
     4 * (teen_num / watchtime_all) +
     8 * (dinozaur_num / watchtime_all);
 
-  return `Zgaduje że ${user} ma ${Math.round(starting_age)} lat jasperFajka `;
+  return `Zgaduje że ${userName} ma ${Math.round(starting_age)} lat jasperFajka `;
 }

@@ -1,5 +1,6 @@
 import determineViewer from "../../components/checkChannels/determineViewer.js";
 import blacklistRegister from "../../apis/yfles/blacklistRegister.js";
+import cooldownsList from "../../components/cooldownsList.js";
 
 function responses(ratio, user) {
   if (ratio.watchtime < 0.3) {

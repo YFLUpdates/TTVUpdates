@@ -1,4 +1,5 @@
 import determineViewer from "../../components/checkChannels/determineViewer.js";
+import cooldownsList from "../../components/cooldownsList.js";
 
 function responses(ratio){
     if (ratio.watchtime < 0.3){

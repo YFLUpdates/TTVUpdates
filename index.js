@@ -55,6 +55,7 @@ import {
   commandConnectDC,
   commandTikTok,
   commandSMP,
+  commandFaceitLVL,
 } from "./command/adrian1g/index.js";
 import {
   commandDice,
@@ -1034,6 +1035,22 @@ chatClient.onMessage(async (channel, user, msg, tags) => {
         break;
       }
 
+      chatClient.say(channel, command);
+
+      break;
+    }
+    case "lvl":
+    case "faceit":
+    case "elo": {
+      if (!["adrian1g__", "3xanax"].includes(channelClean)) break;
+
+      const command = await commandFaceitLVL(
+        user,
+        session_settings[channelClean].cooldowns
+      );
+      if (command === null) {
+        break;
+      }
       chatClient.say(channel, command);
 
       break;

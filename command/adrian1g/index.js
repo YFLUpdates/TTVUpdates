@@ -4,5 +4,6 @@ import commandMed from "./MED.js";
 import commandConnectDC from "./ConnectDC.js";
 import commandTikTok from "./TikTok.js";
 import commandSMP from "./YFLSMP.js";
+import commandFaceitLVL from "./faceitLVL.js";
 
-export { commandSettings, commandCam2, commandMed, commandConnectDC, commandTikTok, commandSMP};
+export { commandSettings, commandCam2, commandMed, commandConnectDC, commandTikTok, commandSMP, commandFaceitLVL};

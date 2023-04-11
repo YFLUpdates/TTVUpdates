@@ -24,9 +24,6 @@ export default async function PointsEarning(channels, api) {
 
   await Promise.all(
     streams.map(async (i) => {
-      if (["xmerghani", "mrdzinold", "mork", "banduracartel"].includes(i.userName)) {
-        return;
-      }
 
       liveChannels.push(i.userName);
 
@@ -63,9 +60,6 @@ export default async function PointsEarning(channels, api) {
 
   await Promise.all(
     userIDS.map(async (i) => {
-      if (["xmerghani", "mrdzinold", "mork", "banduracartel"].includes(i.name)) {
-        return;
-      }
 
       const chatters = await api.chat
         .getChattersPaginated(i.id, "815978731").getAll()

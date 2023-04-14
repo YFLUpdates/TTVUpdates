@@ -1042,10 +1042,9 @@ chatClient.onMessage(async (channel, user, msg, tags) => {
     case "lvl":
     case "faceit":
     case "elo": {
-      if (!["adrian1g__", "3xanax"].includes(channelClean)) break;
-
       const command = await commandFaceitLVL(
         user,
+        channelClean,
         session_settings[channelClean].cooldowns
       );
       if (command === null) {

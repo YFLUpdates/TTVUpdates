@@ -3,14 +3,19 @@ import getUser from "../../apis/faceit/getUser.js";
 
 export default async function commandfaceitLVL(
   user,
+  channelClean,
   cooldown
 ) {
+  if (!["adrian1g__", "wodoglowie_"].includes(channelClean)) {
+    return null;
+  }
+
   if (cooldown.classic > Date.now() - cooldownsList("classic")) {
     return null;
   }
   cooldown.classic = Date.now();
 
-  const request = await getUser("1gLOTTA");
+  const request = await getUser(channelClean === "adrian1g__" ? "1gLOTTA" : "ForeverPL");
 
   if (request === null) {
     return `${user}, nie udało sie pobrać statystyk - FACEIT.`;

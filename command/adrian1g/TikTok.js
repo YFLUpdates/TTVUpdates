@@ -12,7 +12,7 @@ export default async function commandTikTok(
   cooldown,
   modules
 ) {
-  if (["mrdzinold", "xmerghani", "banduracartel"].includes(channelClean)) {
+  if (["mrdzinold", "xmerghani", "banduracartel", "f1skacz"].includes(channelClean)) {
     return null;
   }
 

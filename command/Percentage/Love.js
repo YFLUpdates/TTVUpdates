@@ -7,7 +7,7 @@ export default async function commandLove(
   channelClean,
   cooldown
 ) {
-  if(["grubamruwa", "xmerghani"].includes(channelClean)) return null;
+  if(["grubamruwa", "xmerghani", "f1skacz"].includes(channelClean)) return null;
   if (cooldown.classic > Date.now() - cooldownsList("classic")) {
     return null;
   }

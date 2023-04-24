@@ -10,7 +10,7 @@ export default async function commandPoints(
   args,
   cooldown
 ) {
-  if (["mrdzinold", "xmerghani", "banduracartel"].includes(channelClean)) {
+  if (["mrdzinold", "xmerghani", "banduracartel", "f1skacz"].includes(channelClean)) {
     return null;
   }
   

@@ -27,7 +27,12 @@ export default async function commandGiveaway(
   isModUp,
   api
 ) {
-  if (argumentClean === "one" && (isModUp || user === "3xanax")) {
+
+  if (!isModUp) {
+    return null;
+  }
+
+  if (argumentClean === "one") {
     const chatters = await gChatters(api, channelClean);
 
     if (chatters === null) {
@@ -46,7 +51,7 @@ export default async function commandGiveaway(
     return `Gratulacje ${random.userDisplayName} wygrałeś darmowe 800 punktów BRUHBRUH FIRE `;
   }
 
-  if (argumentClean === "multi" && (isModUp || user === "3xanax")) {
+  if (argumentClean === "multi") {
     const chatters = await gChatters(api, channelClean);
 
     if (chatters === null) {
@@ -65,10 +70,8 @@ export default async function commandGiveaway(
         await pointsToVoid(channelClean, `+160`, i.userDisplayName);
       })
     );
-
-    setTimeout(() => {
-      return `Gratulacje ${winners} wygraliście darmowe 160 punktów BRUHBRUH FIRE `;
-    }, 1000);
+    
+    return `Gratulacje ${winners} wygraliście darmowe 160 punktów BRUHBRUH FIRE `;
   }
 
   return `${user}, zapomniałeś/aś o rodzaju (one/multi)`;

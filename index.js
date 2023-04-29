@@ -70,6 +70,7 @@ import PointsEarning from "./components/PointsEarning.js";
 import cooldownsList from "./components/cooldownsList.js";
 import updateBotToken from "./apis/database/updateBotToken.js";
 import commandModules from "./command/Admin/Modules.js";
+import commandGiveaway from "./command/Admin/Giveaway.js";
 dotenv.config();
 
 const app = express();
@@ -1047,6 +1048,27 @@ chatClient.onMessage(async (channel, user, msg, tags) => {
         channelClean,
         session_settings[channelClean].cooldowns
       );
+      if (command === null) {
+        break;
+      }
+      chatClient.say(channel, command);
+
+      break;
+    }
+    case "gw":
+    case "giveaway": {
+      const userInfo = tags.userInfo;
+      const { isMod, isBroadcaster } = userInfo;
+      const isModUp = isBroadcaster || isMod;
+
+      const command = await commandGiveaway(
+        user,
+        channelClean,
+        argumentClean,
+        isModUp,
+        api
+      );
+
       if (command === null) {
         break;
       }

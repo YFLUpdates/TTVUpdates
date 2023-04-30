@@ -90,7 +90,7 @@ let YFLSMP = {
   streams: [],
 };
 const channels = ["adrian1g__","grubamruwa","xspeedyq","dobrycsgo","mrdzinold","xmerghani","xkaleson","neexcsgo","banduracartel","sl3dziv","xmevron","shavskyyy","grabyyolo","tuszol","1wron3k","mejnyy", "wodoglowie_", "f1skacz", "xganiaa", "minesekk", "shnycell", "petunia098"];
-//const channels = ["adrian1g__"];
+//const channels = ["3xanax"];
 const clientId = process.env.TWITCH_CLIENT_ID;
 const clientSecret = process.env.TWITCH_CLIENT_SECRET;
 let tokenData = {};
@@ -207,7 +207,7 @@ chatClient.onTimeout((channel, user, duration) => {
 
 chatClient.onSub((channel, user, subInfo) => {
   if (
-    ["#xmerghani", "#mrdzinold", "#mork", "#banduracartel"].includes(channel)
+    ["#xmerghani", "#mrdzinold", "#mork", "#banduracartel", "#neexcsgo"].includes(channel)
   ) {
     return;
   }
@@ -228,7 +228,7 @@ chatClient.onSub((channel, user, subInfo) => {
 
 chatClient.onResub((channel, user, subInfo) => {
   if (
-    ["#xmerghani", "#mrdzinold", "#mork", "#banduracartel"].includes(channel)
+    ["#xmerghani", "#mrdzinold", "#mork", "#banduracartel", "#neexcsgo"].includes(channel)
   ) {
     return;
   }
@@ -249,7 +249,7 @@ chatClient.onResub((channel, user, subInfo) => {
 
 chatClient.onSubGift((channel, user, subInfo) => {
   if (
-    ["#xmerghani", "#mrdzinold", "#mork", "#banduracartel"].includes(channel)
+    ["#xmerghani", "#mrdzinold", "#mork", "#banduracartel", "#neexcsgo"].includes(channel)
   ) {
     return;
   }
@@ -287,9 +287,7 @@ chatClient.onMessage(async (channel, user, msg, tags) => {
     return;
 
   //TODO
-  //!gdzie - temp do sierpnia
   //!mogemoda
-  //!gw
   //!losowanie
   switch (command) {
     case "opluj": {
@@ -1046,6 +1044,7 @@ chatClient.onMessage(async (channel, user, msg, tags) => {
       const command = await commandFaceitLVL(
         user,
         channelClean,
+        argumentClean,
         session_settings[channelClean].cooldowns
       );
       if (command === null) {

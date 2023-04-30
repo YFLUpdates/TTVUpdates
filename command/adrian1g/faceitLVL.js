@@ -1,12 +1,14 @@
 import cooldownsList from "../../components/cooldownsList.js";
 import getUser from "../../apis/faceit/getUser.js";
+import faceitSwitch from "../../components/Faceit/Switch.js";
 
 export default async function commandfaceitLVL(
   user,
   channelClean,
+  argumentClean,
   cooldown
 ) {
-  if (!["adrian1g__", "wodoglowie_"].includes(channelClean)) {
+  if (!["adrian1g__", "wodoglowie_", "3xanax"].includes(channelClean)) {
     return null;
   }
 
@@ -15,11 +17,12 @@ export default async function commandfaceitLVL(
   }
   cooldown.classic = Date.now();
 
-  const request = await getUser(channelClean === "adrian1g__" ? "1gLOTTA" : "ForeverPL");
+  const userName = argumentClean ? argumentClean : faceitSwitch(channelClean);
+  const request = await getUser(userName);
 
   if (request === null) {
     return `${user}, nie udało sie pobrać statystyk - FACEIT.`;
   }
 
-  return `${user}, LEVEL: ${request.lvl} || ELO: ${request.elo} || Win Rate: ${request.stats.lifetime["Win Rate %"]}% || K/D Ratio: ${request.stats.lifetime["Average K/D Ratio"]} beka`
+  return `${user}, LVL: ${request.lvl} || ELO: ${request.elo} || WR: ${request.stats.lifetime["Win Rate %"]}% || K/D Ratio: ${request.stats.lifetime["Average K/D Ratio"]} || Bilans: ${request.todayEloDiff} ||  Mecze: ${request.latestMatchesTrend.score.wins}W / ${request.latestMatchesTrend.score.loses}L beka`
 }

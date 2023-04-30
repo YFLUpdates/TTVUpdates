@@ -24,5 +24,5 @@ export default async function commandfaceitLVL(
     return `${user}, nie udało sie pobrać statystyk - FACEIT.`;
   }
 
-  return `${user}, LVL: ${request.lvl} || ELO: ${request.elo} || WR: ${request.stats.lifetime["Win Rate %"]}% || K/D Ratio: ${request.stats.lifetime["Average K/D Ratio"]} || Bilans: ${request.todayEloDiff} ||  Mecze: ${request.latestMatchesTrend.score.wins}W / ${request.latestMatchesTrend.score.loses}L beka`
+  return `Konto ${userName} - LVL: ${request.lvl} || ELO: ${request.elo} || WR: ${request.stats.lifetime["Win Rate %"]}% || K/D Ratio: ${request.stats.lifetime["Average K/D Ratio"]} || Bilans: ${request.todayEloDiff} ||  Mecze: ${request.latestMatchesTrend.score.wins}W / ${request.latestMatchesTrend.score.loses}L beka`
 }

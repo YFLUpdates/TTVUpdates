@@ -11,6 +11,10 @@ export default async function fivemServer(nickname) {
   
   if (res.status !== 200) {
     return null;
+  } 
+
+  if(res.headers.get("content-type") === "text/html; charset=utf-8"){
+    return null;
   }
 
   let data = await res.json();

@@ -1044,7 +1044,7 @@ chatClient.onMessage(async (channel, user, msg, tags) => {
       const command = await commandFaceitLVL(
         user,
         channelClean,
-        argumentClean,
+        args[0],
         session_settings[channelClean].cooldowns
       );
       if (command === null) {

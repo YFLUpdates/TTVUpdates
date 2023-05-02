@@ -63,7 +63,6 @@ import {
   commandRoulette,
 } from "./command/Hazard/index.js";
 import { commandMarry, commandLove } from "./command/Percentage/index.js";
-import SelectStreams from "./components/SMP/SelectStreams.js";
 import SubscriptionReward from "./components/SubscriptionReward.js";
 import { botToken, insertActions, subInsert } from "./apis/database/index.js";
 import PointsEarning from "./components/PointsEarning.js";
@@ -71,6 +70,7 @@ import cooldownsList from "./components/cooldownsList.js";
 import updateBotToken from "./apis/database/updateBotToken.js";
 import commandModules from "./command/Admin/Modules.js";
 import commandGiveaway from "./command/Admin/Giveaway.js";
+import generateVoice from "./apis/ai/generateVoice.js";
 dotenv.config();
 
 const app = express();
@@ -81,18 +81,18 @@ const io = new Server(server, {
   },
 });
 const PORT = process.env.PORT || 3000;
+
 const famous = await dataFromFiles("./files/famous.json");
 const girls = await dataFromFiles("./files/girls.json");
 const bad_words = await dataFromFiles("./files/bad_words.json");
 const session_settings = await dataFromFiles("./files/channels_settings.json");
-let YFLSMP = {
-  last_update: new Date(),
-  streams: [],
-};
+
 const channels = ["adrian1g__","grubamruwa","xspeedyq","dobrycsgo","mrdzinold","xmerghani","xkaleson","neexcsgo","banduracartel","sl3dziv","xmevron","shavskyyy","grabyyolo","tuszol","1wron3k","mejnyy", "wodoglowie_", "f1skacz", "xganiaa", "minesekk", "shnycell", "petunia098"];
-//const channels = ["3xanax"];
+//const channels = ["adrian1g__"];
+
 const clientId = process.env.TWITCH_CLIENT_ID;
 const clientSecret = process.env.TWITCH_CLIENT_SECRET;
+
 let tokenData = {};
 
 await token();
@@ -134,7 +134,10 @@ app.get("/", (req, res) => {
 });
 
 app.get("/streams", (req, res) => {
-  res.json(YFLSMP);
+  res.json({
+    last_update: new Date(),
+    streams: [],
+  });
 });
 
 // app.get("/giveaway", (req, res) => {
@@ -165,26 +168,6 @@ server.listen(PORT, () => console.log(`API Server listening on port ${PORT}`));
 setInterval(async () => {
   await PointsEarning(channels, api);
 }, 10 * 60 * 1000);
-
-setInterval(async () => {
-  const getSelected = await SelectStreams(api);
-
-  if (getSelected === null) {
-    return;
-  }
-
-  YFLSMP = getSelected;
-}, 3.5 * 60 * 1000);
-
-setTimeout(async () => {
-  const getSelected = await SelectStreams(api);
-
-  if (getSelected === null) {
-    return;
-  }
-
-  YFLSMP = getSelected;
-}, 1000);
 
 chatClient.onBan((channel, user) => {
   insertActions({
@@ -271,6 +254,26 @@ chatClient.onSubGift((channel, user, subInfo) => {
 chatClient.onMessage(async (channel, user, msg, tags) => {
 
   if(channel === "#adrian1g__"){
+
+    if(tags.isRedemption === true){
+
+      if(msg.length > 500){
+        return chatClient.say(channel, `${user}, zbyt długa wiadomość aha7`);
+      }
+
+      const request = await generateVoice(msg);
+
+      if(request === null){
+        return chatClient.say(channel, `${user}, błąd generowania głosu mhm`);
+      }
+
+      io.emit("new-tts", {
+        channel: channel.replaceAll("#", "").toLowerCase(),
+      });
+
+      return;
+    }
+
     const args = msg.split(" ");
 
     if(args.includes("gg/jasper")){
@@ -289,7 +292,6 @@ chatClient.onMessage(async (channel, user, msg, tags) => {
         user: getChannelID
       });
     }
-
   }
 
   if (!msg.startsWith("!")) return;

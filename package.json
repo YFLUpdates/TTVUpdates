@@ -1,6 +1,6 @@
 {
   "name": "ttvupdates",
-  "version": "2.0.8",
+  "version": "2.0.9",
   "description": "Twitch bot with functions similar to LewusBot",
   "main": "index.js",
   "repository": {

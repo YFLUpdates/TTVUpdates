@@ -67,6 +67,7 @@ import SubscriptionReward from "./components/SubscriptionReward.js";
 import { botToken, insertActions, subInsert } from "./apis/database/index.js";
 import PointsEarning from "./components/PointsEarning.js";
 import cooldownsList from "./components/cooldownsList.js";
+import aiCooldown from "./components/aiCooldown.js";
 import updateBotToken from "./apis/database/updateBotToken.js";
 import commandModules from "./command/Admin/Modules.js";
 import commandGiveaway from "./command/Admin/Giveaway.js";
@@ -267,9 +268,11 @@ chatClient.onMessage(async (channel, user, msg, tags) => {
         return chatClient.say(channel, `${user}, błąd generowania głosu mhm`);
       }
 
-      io.emit("new-tts", {
-        channel: channel.replaceAll("#", "").toLowerCase(),
-      });
+      setTimeout(() => {
+        io.emit("new-tts", {
+          channel: channel.replaceAll("#", "").toLowerCase(),
+        });
+      }, aiCooldown(msg.length));
 
       return;
     }

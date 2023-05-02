@@ -1100,6 +1100,25 @@ chatClient.onMessage(async (channel, user, msg, tags) => {
 
       break;
     }
+    case "testai": {
+      if (!["adrian1g__", "3xanax"].includes(channelClean)) break;
+
+      const userInfo = tags.userInfo;
+      const { isMod, isBroadcaster } = userInfo;
+      const isModUp = isBroadcaster || isMod;
+
+      if(!isModUp){
+        break;
+      }
+      
+      io.emit("new-tts", {
+        channel: channel.replaceAll("#", "").toLowerCase(),
+      });
+
+      chatClient.say(channel, "test send");
+
+      break;
+    }
     default:
       break;
   }

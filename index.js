@@ -262,11 +262,11 @@ chatClient.onMessage(async (channel, user, msg, tags) => {
         return chatClient.say(channel, `${user}, zbyt długa wiadomość aha7`);
       }
 
-      // const isLive = api.streams.getStreamByUserName("adrian1g__").name;
+      const isLive = api.streams.getStreamByUserName("adrian1g__").name;
 
-      // if(!isLive){
-      //   return;
-      // }
+      if(!isLive){
+        return;
+      }
 
       const request = await generateVoice(msg);
 

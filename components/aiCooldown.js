@@ -1,7 +1,7 @@
 export default function cooldownsList(amount) {
     if(amount > 200){
-        return 2000;
+        return 2500;
     }
 
-    return 1000;
+    return 2000;
 }

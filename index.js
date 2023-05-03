@@ -1072,7 +1072,7 @@ chatClient.onMessage(async (channel, user, msg, tags) => {
 
       break;
     }
-    case "testai": {
+    case "skiptts": {
       if (!["adrian1g__", "3xanax"].includes(channelClean)) break;
 
       const userInfo = tags.userInfo;
@@ -1083,11 +1083,11 @@ chatClient.onMessage(async (channel, user, msg, tags) => {
         break;
       }
       
-      io.emit("new-tts", {
+      io.emit("skip-tts", {
         channel: channel.replaceAll("#", "").toLowerCase(),
       });
 
-      chatClient.say(channel, "test send");
+      chatClient.say(channel, `${user}, TTS skipped ok`);
 
       break;
     }

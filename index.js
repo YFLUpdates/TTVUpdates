@@ -72,6 +72,7 @@ import commandModules from "./command/Admin/Modules.js";
 import commandGiveaway from "./command/Admin/Giveaway.js";
 import redeemTTS from "./components/TTS/Redeem.js";
 import moderate1G from "./components/Moderate/adrian1g.js";
+import commandTTS from "./command/TTS/playTTS.js";
 dotenv.config();
 
 const app = express();
@@ -1088,6 +1089,30 @@ chatClient.onMessage(async (channel, user, msg, tags) => {
       });
 
       chatClient.say(channel, `${user}, TTS skipped ok`);
+
+      break;
+    }
+    case "playtts":
+    case "tts": {
+      const userInfo = tags.userInfo;
+      const { isMod, isBroadcaster, isVip } = userInfo;
+      const isModUp = isBroadcaster || isMod || isVip;
+
+      const command = await commandTTS(
+        user,
+        args,
+        channelClean,
+        session_settings[channelClean].cooldowns,
+        isModUp,
+        api, 
+        io
+      );
+
+      if (command === null) {
+        break;
+      }
+
+      chatClient.say(channel, command);
 
       break;
     }

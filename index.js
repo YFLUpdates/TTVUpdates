@@ -1096,7 +1096,7 @@ chatClient.onMessage(async (channel, user, msg, tags) => {
     case "tts": {
       const userInfo = tags.userInfo;
       const { isMod, isBroadcaster, isVip } = userInfo;
-      const isModUp = isBroadcaster || isMod || isVip;
+      const isModUp = isBroadcaster || isMod;
 
       const command = await commandTTS(
         user,

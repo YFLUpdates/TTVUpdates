@@ -67,11 +67,11 @@ import SubscriptionReward from "./components/SubscriptionReward.js";
 import { botToken, insertActions, subInsert } from "./apis/database/index.js";
 import PointsEarning from "./components/PointsEarning.js";
 import cooldownsList from "./components/cooldownsList.js";
-import aiCooldown from "./components/aiCooldown.js";
 import updateBotToken from "./apis/database/updateBotToken.js";
 import commandModules from "./command/Admin/Modules.js";
 import commandGiveaway from "./command/Admin/Giveaway.js";
-import generateVoice from "./apis/ai/generateVoice.js";
+import redeemTTS from "./components/TTS/Redeem.js";
+import moderate1G from "./components/Moderate/adrian1g.js";
 dotenv.config();
 
 const app = express();
@@ -89,7 +89,7 @@ const bad_words = await dataFromFiles("./files/bad_words.json");
 const session_settings = await dataFromFiles("./files/channels_settings.json");
 
 const channels = ["adrian1g__","grubamruwa","xspeedyq","dobrycsgo","mrdzinold","xmerghani","xkaleson","neexcsgo","banduracartel","sl3dziv","xmevron","shavskyyy","grabyyolo","tuszol","1wron3k","mejnyy", "wodoglowie_", "f1skacz", "xganiaa", "minesekk", "shnycell", "petunia098"];
-//const channels = ["adrian1g__"];
+//const channels = ["3xanax"];
 
 const clientId = process.env.TWITCH_CLIENT_ID;
 const clientSecret = process.env.TWITCH_CLIENT_SECRET;
@@ -256,51 +256,14 @@ chatClient.onMessage(async (channel, user, msg, tags) => {
 
   if(channel === "#adrian1g__"){
 
-    if(tags.isRedemption === true){
+    const tts = await redeemTTS(channel, user, msg, tags, api, io);
 
-      if(msg.length > 500){
-        return chatClient.say(channel, `${user}, zbyt długa wiadomość aha7`);
-      }
-
-      const isLive = api.streams.getStreamByUserName("adrian1g__").name;
-
-      if(!isLive){
-        return;
-      }
-
-      const request = await generateVoice(msg);
-
-      if(request === null){
-        return chatClient.say(channel, `${user}, błąd generowania głosu mhm`);
-      }
-
-      setTimeout(() => {
-        io.emit("new-tts", {
-          channel: channel.replaceAll("#", "").toLowerCase(),
-        });
-      }, aiCooldown(msg.length));
-
-      return;
+    if(tts){
+      return chatClient.say(channel, tts);
     }
 
-    const args = msg.split(" ");
+    await moderate1G(msg, api, user);
 
-    if(args.includes("gg/jasper")){
-      const getChannelID = await api.users
-      .getUserByName(user)
-      .catch((e) => {
-        return null;
-      });
-
-      if(getChannelID === null){
-        return;
-      }
-
-      api.moderation.banUser(244310065, 815978731, {
-        reason: "antispam",
-        user: getChannelID
-      });
-    }
   }
 
   if (!msg.startsWith("!")) return;

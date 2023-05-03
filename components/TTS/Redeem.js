@@ -11,9 +11,9 @@ export default async function redeemTTS(channel, user, msg, tags, api, io) {
       return `${user}, zbyt długa wiadomość aha7`;
     }
 
-    const isLive = api.streams.getStreamByUserName("adrian1g__").name;
+    const isLive = await api.streams.getStreamByUserName("adrian1g__");
 
-    if (!isLive) {
+    if (!isLive?.userDisplayName) {
       return null;
     }
 

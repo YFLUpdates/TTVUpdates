@@ -17,7 +17,7 @@ export default async function redeemTTS(channel, user, msg, tags, api, io, free)
       return null;
     }
 
-    if(free === true){
+    if(free === true && channel !== "grubamruwa"){
 
       io.emit( "new-free-tts", {
         msg: msg,

@@ -1,23 +1,33 @@
 import generateVoice from "../../apis/ai/generateVoice.js";
 import aiCooldown from "../aiCooldown.js";
 
-export default async function redeemTTS(channel, user, msg, tags, api, io) {
+export default async function redeemTTS(channel, user, msg, tags, api, io, free) {
 
   if (tags.isRedemption === true) {
     
-    console.log("new TTS: ", tags.isRedemption);
+    console.log("new TTS: ", channel, tags.isRedemption);
 
     if (msg.length > 500) {
       return `${user}, zbyt długa wiadomość aha7`;
     }
-
-    const isLive = await api.streams.getStreamByUserName("adrian1g__");
+    const channelClean = channel.replaceAll("#", "").toLowerCase();
+    const isLive = await api.streams.getStreamByUserName(channelClean);
 
     if (!isLive?.userDisplayName) {
       return null;
     }
 
-    const request = await generateVoice(msg);
+    if(free === true){
+      setTimeout(() => {
+        io.emit( "new-free-tts", {
+          channel: channelClean,
+        });
+      }, aiCooldown(msg.length));
+
+      return null;
+    }
+
+    const request = await generateVoice(msg, channelClean);
 
     if (request === null) {
       return `${user}, błąd generowania głosu mhm`;
@@ -25,7 +35,7 @@ export default async function redeemTTS(channel, user, msg, tags, api, io) {
 
     setTimeout(() => {
       io.emit("new-tts", {
-        channel: channel.replaceAll("#", "").toLowerCase(),
+        channel: channelClean,
       });
     }, aiCooldown(msg.length));
 

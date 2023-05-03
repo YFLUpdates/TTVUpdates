@@ -1,10 +1,11 @@
 import fetch from "node-fetch";
 
-export default async function generateVoice(text) {
+export default async function generateVoice(text, channel) {
   const res = await fetch("https://ai.docchi.pl/tts/generator", {
     method: "POST",
     body: JSON.stringify({
-      "text": text
+      "text": text,
+      "channel": channel
   }),
     headers: {
         'Content-type': 'application/json',

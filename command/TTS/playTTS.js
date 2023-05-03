@@ -25,8 +25,6 @@ export default async function commandTTS(
     return null;
   }
   cooldown.tts = Date.now();
-
-  console.log(args.join(" "));
   
   const tts = await redeemTTS(
     channelClean,
@@ -34,7 +32,8 @@ export default async function commandTTS(
     args.join(" "),
     { isRedemption: true },
     api,
-    io
+    io,
+    true
   );
 
   if (tts === null) {

@@ -255,7 +255,7 @@ chatClient.onSubGift((channel, user, subInfo) => {
 
 chatClient.onMessage(async (channel, user, msg, tags) => {
 
-  if(channel === "#adrian1g__"){
+  if(["#adrian1g__", "#grubamruwa"].includes(channel)){
 
     const tts = await redeemTTS(channel, user, msg, tags, api, io);
 
@@ -263,7 +263,9 @@ chatClient.onMessage(async (channel, user, msg, tags) => {
       return chatClient.say(channel, tts);
     }
 
-    await moderate1G(msg, api, user);
+    if(channel === "#adrian1g__"){
+      await moderate1G(msg, api, user);
+    }
 
   }
 
@@ -1096,7 +1098,7 @@ chatClient.onMessage(async (channel, user, msg, tags) => {
     case "tts": {
       const userInfo = tags.userInfo;
       const { isMod, isBroadcaster, isVip } = userInfo;
-      const isModUp = isBroadcaster || isMod;
+      const isModUp = isBroadcaster || isMod || isVip;
 
       const command = await commandTTS(
         user,

@@ -20,6 +20,7 @@ export default async function redeemTTS(channel, user, msg, tags, api, io, free)
     if(free === true){
       setTimeout(() => {
         io.emit( "new-free-tts", {
+          msg: msg,
           channel: channelClean,
         });
       }, aiCooldown(msg.length));

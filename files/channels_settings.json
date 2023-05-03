@@ -25,7 +25,8 @@
             "duels": false,
             "roulette": false,
             "dice": false,
-            "tiktok": true
+            "tiktok": true,
+            "tts": 0
         },
         "duels_list": [],
         "cooldowns": {

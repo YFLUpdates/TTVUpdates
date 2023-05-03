@@ -13,17 +13,16 @@ export default async function redeemTTS(channel, user, msg, tags, api, io, free)
     const channelClean = channel.replaceAll("#", "").toLowerCase();
     const isLive = await api.streams.getStreamByUserName(channelClean);
 
-    if (!isLive?.userDisplayName) {
-      return null;
-    }
+    // if (!isLive?.userDisplayName) {
+    //   return null;
+    // }
 
     if(free === true){
-      setTimeout(() => {
-        io.emit( "new-free-tts", {
-          msg: msg,
-          channel: channelClean,
-        });
-      }, aiCooldown(msg.length));
+
+      io.emit( "new-free-tts", {
+        msg: msg,
+        channel: channelClean,
+      });
 
       return null;
     }

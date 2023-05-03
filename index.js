@@ -90,7 +90,7 @@ const bad_words = await dataFromFiles("./files/bad_words.json");
 const session_settings = await dataFromFiles("./files/channels_settings.json");
 
 const channels = ["adrian1g__","grubamruwa","xspeedyq","dobrycsgo","mrdzinold","xmerghani","xkaleson","neexcsgo","banduracartel","sl3dziv","xmevron","shavskyyy","grabyyolo","tuszol","1wron3k","mejnyy", "wodoglowie_", "f1skacz", "xganiaa", "minesekk", "shnycell", "petunia098"];
-//const channels = ["3xanax"];
+//const channels = ["grubamruwa"];
 
 const clientId = process.env.TWITCH_CLIENT_ID;
 const clientSecret = process.env.TWITCH_CLIENT_SECRET;
@@ -1097,8 +1097,12 @@ chatClient.onMessage(async (channel, user, msg, tags) => {
     case "playtts":
     case "tts": {
       const userInfo = tags.userInfo;
-      const { isMod, isBroadcaster, isVip } = userInfo;
-      const isModUp = isBroadcaster || isMod || isVip;
+      const { isMod, isBroadcaster, isVip, isSubscriber } = userInfo;
+      let isModUp = isBroadcaster || isMod || isVip;
+
+      if(channelClean === "grubamruwa"){
+        isModUp = isBroadcaster || isMod || isVip || isSubscriber;
+      }
 
       const command = await commandTTS(
         user,

@@ -60,7 +60,7 @@ export default async function commandDuel(
     }
 
     duelsList.splice(indexOfObject, 1);
-    const rolledNumber = rollingNumber();
+    const rolledNumber = await rollingNumber();
 
     if (rolledNumber === 1) {
       const request = pointsToUser(channelClean, {

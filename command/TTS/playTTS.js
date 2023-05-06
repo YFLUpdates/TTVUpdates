@@ -26,14 +26,15 @@ export default async function commandTTS(
   }
   cooldown.tts = Date.now();
   
+  const buildText = args.join(" ");
   const tts = await redeemTTS(
     channelClean,
     user,
-    args.join(" "),
+    buildText,
     { isRedemption: true },
     api,
     io,
-    true
+    buildText.length > 40 ? true : null
   );
 
   if (tts === null) {

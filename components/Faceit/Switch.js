@@ -4,7 +4,7 @@ export default function faceitSwitch(channel) {
       case 'adrian1g__':
         name = "1gLOTTA";
         break;
-      case 'wodoglowie':
+      case 'wodoglowie_':
         name = "ForeverPL";
         break;
       default:

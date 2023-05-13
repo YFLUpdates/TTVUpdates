@@ -1038,22 +1038,22 @@ chatClient.onMessage(async (channel, user, msg, tags) => {
 
       break;
     }
-    case "lvl":
-    case "faceit":
-    case "elo": {
-      const command = await commandFaceitLVL(
-        user,
-        channelClean,
-        args[0],
-        session_settings[channelClean].cooldowns
-      );
-      if (command === null) {
-        break;
-      }
-      chatClient.say(channel, command);
+    // case "lvl":
+    // case "faceit":
+    // case "elo": {
+    //   const command = await commandFaceitLVL(
+    //     user,
+    //     channelClean,
+    //     args[0],
+    //     session_settings[channelClean].cooldowns
+    //   );
+    //   if (command === null) {
+    //     break;
+    //   }
+    //   chatClient.say(channel, command);
 
-      break;
-    }
+    //   break;
+    // }
     case "gw":
     case "giveaway": {
       const userInfo = tags.userInfo;

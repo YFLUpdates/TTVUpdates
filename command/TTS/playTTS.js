@@ -36,6 +36,7 @@ export default async function commandTTS(
     io,
     buildText.length > 40 ? true : null
   );
+  
 
   if (tts === null) {
     return `${user}, generowanie tekstu.`;

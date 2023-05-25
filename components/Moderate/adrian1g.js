@@ -1,7 +1,7 @@
 export default async function moderate1G(msg, api, user){
     const args = msg.split(" ");
 
-    if(args.includes("gg/jasper")){
+    if(args.includes("kingfvxq")){
       const getChannelID = await api.users
       .getUserByName(user)
       .catch((e) => {

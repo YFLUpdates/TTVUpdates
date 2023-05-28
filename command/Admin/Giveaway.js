@@ -27,6 +27,9 @@ export default async function commandGiveaway(
   isModUp,
   api
 ) {
+  if(channelClean === "mrdzinold"){
+    return null;
+  }
 
   if (!isModUp) {
     return null;

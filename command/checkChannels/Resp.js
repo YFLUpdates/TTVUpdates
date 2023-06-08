@@ -55,6 +55,11 @@ export default async function commandResp(user, argumentClean, cooldown) {
   ];
 
   if (argumentClean && argumentClean.length >= 3) {
+
+    if(argumentClean === "amuniia"){
+      return `amuniia jest w chuj z respa Spit`;
+    }
+    
     const viewer = await determineViewer(argumentClean, channel_list);
 
     if (viewer === null) {

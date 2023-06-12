@@ -8,7 +8,7 @@ export default async function commandOpluj(
   cooldown
 ) {
   if (
-    ["adrian1g__", "xmerghani", "xkaleson", "banduracartel"].includes(
+    ["adrian1g__", "xmerghani", "xkaleson", "banduracartel", "ciiorny"].includes(
       channelClean
     )
   ) {

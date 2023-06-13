@@ -13,7 +13,7 @@ export default async function commandTTS(
     return null;
   }
 
-  if (!["adrian1g__", "3xanax", "grubamruwa"].includes(channelClean)) {
+  if (!["adrian1g__", "3xanax", "grubamruwa", "neexcsgo"].includes(channelClean)) {
     return null;
   }
 

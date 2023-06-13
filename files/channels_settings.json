@@ -500,5 +500,25 @@
             "ewron": 0,
             "watchtimeall": 0
         } 
+    },
+    "d3tzki": {
+        "modules": {
+            "duels": false,
+            "roulette": false,
+            "dice": false,
+            "tiktok": false
+        },
+        "duels_list": [],
+        "cooldowns": {
+            "classic": 0,
+            "longer": 0,
+            "special": 0
+        },
+        "antispam": {
+            "wiek": 0,
+            "top3": 0,
+            "ewron": 0,
+            "watchtimeall": 0
+        } 
     }
 }

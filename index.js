@@ -1076,7 +1076,7 @@ chatClient.onMessage(async (channel, user, msg, tags) => {
       break;
     }
     case "skiptts": {
-      if (!["adrian1g__", "3xanax", "grubamruwa", "neexcsgo"].includes(channelClean)) break;
+      if (!["adrian1g__", "3xanax", "grubamruwa", "neexcsgo", "d3tzki"].includes(channelClean)) break;
 
       const userInfo = tags.userInfo;
       const { isMod, isBroadcaster } = userInfo;

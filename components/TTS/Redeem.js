@@ -17,7 +17,7 @@ export default async function redeemTTS(channel, user, msg, tags, api, io, free)
       return null;
     }
 
-    if(channelClean === "adrian1g__" || free === true && channel !== "grubamruwa"){
+    if(channelClean === "adrian1g__" || free === true && !["neexcsgo", "grubamruwa"].includes(channel)){
 
       io.emit( "new-free-tts", {
         msg: msg,

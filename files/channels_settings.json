@@ -172,7 +172,8 @@
         "cooldowns": {
             "classic": 0,
             "longer": 0,
-            "special": 0
+            "special": 0,
+            "tts": 0
         },
         "antispam": {
             "wiek": 0,

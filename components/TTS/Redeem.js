@@ -5,6 +5,11 @@ export default async function redeemTTS(channel, user, msg, tags, api, io, free)
 
   if (tags.isRedemption === true) {
     
+    if(msg.includes("https://steamcommunity.com")){
+
+      return null;
+    }
+
     console.log("new TTS: ", channel, tags.isRedemption);
 
     if (msg.length > 500) {

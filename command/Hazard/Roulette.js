@@ -26,8 +26,13 @@ export default async function commandRoulette(
   }
   cooldown.longer = Date.now();
 
-  if (modules.modules["roulette"] === false)
+  if (modules.modules["roulette"] === false) {
+    if (channelClean === "xkaleson") {
+      return null;
+    }
+
     return `${user}, ruletka została wyłączona. `;
+  }
 
   if (
     !argumentClean ||

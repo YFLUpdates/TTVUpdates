@@ -27,7 +27,11 @@ export default async function commandGiveaway(
   isModUp,
   api
 ) {
-  if(channelClean === "mrdzinold"){
+  if (
+    ["mrdzinold", "xmerghani", "mork", "neexcsgo", "banduracartel", "xkaleson"].includes(
+      channelClean
+    )
+  ) {
     return null;
   }
 

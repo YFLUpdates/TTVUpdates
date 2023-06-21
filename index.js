@@ -62,7 +62,7 @@ import {
   commandDuel,
   commandRoulette,
 } from "./command/Hazard/index.js";
-import { commandMarry, commandLove } from "./command/Percentage/index.js";
+import { commandMarry, commandLove, commandRyra } from "./command/Percentage/index.js";
 import SubscriptionReward from "./components/SubscriptionReward.js";
 import { botToken, insertActions, subInsert } from "./apis/database/index.js";
 import PointsEarning from "./components/PointsEarning.js";
@@ -90,7 +90,7 @@ const bad_words = await dataFromFiles("./files/bad_words.json");
 const session_settings = await dataFromFiles("./files/channels_settings.json");
 
 const channels = ["adrian1g__","grubamruwa","xspeedyq","dobrycsgo","mrdzinold","xmerghani","xkaleson","neexcsgo","banduracartel","sl3dziv","xmevron","shavskyyy","grabyyolo","tuszol","1wron3k","mejnyy", "wodoglowie_", "f1skacz", "xganiaa", "minesekk", "shnycell", "petunia098", "kruciutki", "ciiorny", "d3tzki"];
-//const channels = ["grubamruwa"];
+//const channels = ["xkaleson"];
 
 const clientId = process.env.TWITCH_CLIENT_ID;
 const clientSecret = process.env.TWITCH_CLIENT_SECRET;
@@ -192,7 +192,7 @@ chatClient.onTimeout((channel, user, duration) => {
 
 chatClient.onSub((channel, user, subInfo) => {
   if (
-    ["#xmerghani", "#mrdzinold", "#mork", "#banduracartel", "#neexcsgo"].includes(channel)
+    ["#xmerghani", "#mrdzinold", "#mork", "#banduracartel", "#neexcsgo", "#xkaleson"].includes(channel)
   ) {
     return;
   }
@@ -213,7 +213,7 @@ chatClient.onSub((channel, user, subInfo) => {
 
 chatClient.onResub((channel, user, subInfo) => {
   if (
-    ["#xmerghani", "#mrdzinold", "#mork", "#banduracartel", "#neexcsgo"].includes(channel)
+    ["#xmerghani", "#mrdzinold", "#mork", "#banduracartel", "#neexcsgo", "#xkaleson"].includes(channel)
   ) {
     return;
   }
@@ -234,7 +234,7 @@ chatClient.onResub((channel, user, subInfo) => {
 
 chatClient.onSubGift((channel, user, subInfo) => {
   if (
-    ["#xmerghani", "#mrdzinold", "#mork", "#banduracartel", "#neexcsgo"].includes(channel)
+    ["#xmerghani", "#mrdzinold", "#mork", "#banduracartel", "#neexcsgo", "#xkaleson"].includes(channel)
   ) {
     return;
   }
@@ -1112,6 +1112,21 @@ chatClient.onMessage(async (channel, user, msg, tags) => {
         isModUp,
         api, 
         io
+      );
+
+      if (command === null) {
+        break;
+      }
+
+      chatClient.say(channel, command);
+
+      break;
+    }
+    case "ryra": {
+      const command = await commandRyra(
+        user,
+        channelClean,
+        session_settings[channelClean].cooldowns
       );
 
       if (command === null) {

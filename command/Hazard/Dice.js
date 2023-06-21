@@ -12,7 +12,7 @@ export default async function commandDice(
   modules
 ) {
   if (
-    ["mrdzinold", "xmerghani", "mork", "neexcsgo", "banduracartel"].includes(
+    ["mrdzinold", "xmerghani", "mork", "neexcsgo", "banduracartel", "xkaleson"].includes(
       channelClean
     )
   ) {

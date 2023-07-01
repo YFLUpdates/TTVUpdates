@@ -1,6 +1,10 @@
 import { RefreshingAuthProvider } from "@twurple/auth";
+
 import { ApiClient } from "@twurple/api";
 import { ChatClient } from "@twurple/chat";
+
+// import { NgrokAdapter } from "@twurple/eventsub-ngrok";
+// import { EventSubHttpListener } from '@twurple/eventsub-http';
 
 import express from "express";
 import http from "http";
@@ -89,8 +93,8 @@ const girls = await dataFromFiles("./files/girls.json");
 const bad_words = await dataFromFiles("./files/bad_words.json");
 const session_settings = await dataFromFiles("./files/channels_settings.json");
 
-const channels = ["adrian1g__","grubamruwa","xspeedyq","dobrycsgo","mrdzinold","xmerghani","xkaleson","neexcsgo","banduracartel","sl3dziv","xmevron","shavskyyy","grabyyolo","tuszol","1wron3k","mejnyy", "wodoglowie_", "f1skacz", "xganiaa", "minesekk", "shnycell", "petunia098", "kruciutki", "ciiorny", "d3tzki"];
-//const channels = ["xkaleson"];
+const channels = ["adrian1g__","grubamruwa","xspeedyq","dobrycsgo","mrdzinold","xmerghani","xkaleson","neexcsgo","banduracartel","sl3dziv","xmevron","shavskyyy","grabyyolo","tuszol","1wron3k","mejnyy", "wodoglowie_", "f1skacz", "xganiaa", "minesekk", "shnycell", "petunia098", "kruciutki", "ciiorny", "d3tzki", "tommyjerrson"];
+//const channels = ["3xanax"];
 
 const clientId = process.env.TWITCH_CLIENT_ID;
 const clientSecret = process.env.TWITCH_CLIENT_SECRET;
@@ -121,6 +125,14 @@ await authProvider.addUserForToken(tokenData, ["chat"]);
 
 const chatClient = new ChatClient({ authProvider, channels: channels });
 const api = new ApiClient({ authProvider });
+
+// await api.eventSub.deleteAllSubscriptions();
+
+// const listener = new EventSubHttpListener({
+//   apiClient: api,
+//   secret: process.env.TWITCH_SIGNING_SECRET,
+//   adapter: new NgrokAdapter(),
+// });
 
 await chatClient.connect();
 
@@ -166,10 +178,16 @@ io.on("connection", (socket) => {
 });
 
 server.listen(PORT, () => console.log(`API Server listening on port ${PORT}`));
+// listener.start();
 
 setInterval(async () => {
   await PointsEarning(channels, api);
 }, 10 * 60 * 1000);
+
+// const hypeTrainDetect = listener.onChannelHypeTrainBegin(121329766, event => {
+//   console.log(event)
+//   console.log('Received a follow event');
+// });
 
 chatClient.onBan((channel, user) => {
   insertActions({

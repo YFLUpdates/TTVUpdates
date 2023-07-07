@@ -26,10 +26,10 @@ export default async function commandServerInfo(user, argumentClean, cooldown) {
       break;
     case "coco":
     case "cocorp":
-      server = await fivemServer("6d6rk8");
+      server = await fivemServer("j6lvy4");
       break;
     case "77rp":
-      server = await fivemServer("63blz4");
+      server = await fivemServer("py7bq7");
       break;
     default:
       server = null;

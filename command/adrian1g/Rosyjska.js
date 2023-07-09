@@ -21,6 +21,7 @@ export default async function commandRosyjska(user, api, cooldown) {
     api.moderation.banUser(244310065, 815978731, {
       reason: "przegrał rosyjska rulete",
       user: getChannelID,
+      duration: 600
     });
 
     return `${user}, co za zjeb, przegrał w rosyjskiej ruletce beka2 `;

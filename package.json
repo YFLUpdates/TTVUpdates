@@ -1,6 +1,6 @@
 {
   "name": "ttvupdates",
-  "version": "2.0.12",
+  "version": "2.0.13",
   "description": "Twitch bot with functions similar to LewusBot",
   "main": "index.js",
   "repository": {
@@ -30,9 +30,11 @@
   "author": "3xanax",
   "license": "MIT",
   "dependencies": {
-    "@twurple/api": "^6.0.9",
-    "@twurple/auth": "^6.0.9",
-    "@twurple/chat": "^6.0.9",
+    "@twurple/api": "^6.2.1",
+    "@twurple/auth": "^6.2.1",
+    "@twurple/chat": "^6.2.1",
+    "@twurple/eventsub-http": "^6.2.1",
+    "@twurple/eventsub-ngrok": "^6.2.1",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "http": "^0.0.1-security",

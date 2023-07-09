@@ -59,7 +59,7 @@ import {
   commandConnectDC,
   commandTikTok,
   commandSMP,
-  commandFaceitLVL,
+  commandRosyjska
 } from "./command/adrian1g/index.js";
 import {
   commandDice,
@@ -94,7 +94,7 @@ const bad_words = await dataFromFiles("./files/bad_words.json");
 const session_settings = await dataFromFiles("./files/channels_settings.json");
 
 const channels = ["adrian1g__","grubamruwa","xspeedyq","dobrycsgo","mrdzinold","xmerghani","xkaleson","neexcsgo","banduracartel","sl3dziv","xmevron","shavskyyy","grabyyolo","tuszol","1wron3k","mejnyy", "wodoglowie_", "f1skacz", "xganiaa", "minesekk", "shnycell", "petunia098", "kruciutki", "ciiorny", "d3tzki", "tommyjerrson"];
-//const channels = ["3xanax"];
+//const channels = ["adrian1g__"];
 
 const clientId = process.env.TWITCH_CLIENT_ID;
 const clientSecret = process.env.TWITCH_CLIENT_SECRET;
@@ -1038,24 +1038,6 @@ chatClient.onMessage(async (channel, user, msg, tags) => {
 
       break;
     }
-    case "yflsmp":
-    case "smp": {
-
-      const command = await commandSMP(
-        user,
-        channelClean,
-        YFLSMP,
-        session_settings[channelClean].cooldowns
-      );
-
-      if (command === null) {
-        break;
-      }
-
-      chatClient.say(channel, command);
-
-      break;
-    }
     // case "lvl":
     // case "faceit":
     // case "elo": {
@@ -1144,6 +1126,24 @@ chatClient.onMessage(async (channel, user, msg, tags) => {
       const command = await commandRyra(
         user,
         channelClean,
+        session_settings[channelClean].cooldowns
+      );
+
+      if (command === null) {
+        break;
+      }
+
+      chatClient.say(channel, command);
+
+      break;
+    }
+    case "rosyjska": 
+    case "ruleta": {
+      if (!["adrian1g__"].includes(channelClean)) break;
+
+      const command = await commandRosyjska(
+        user,
+        api,
         session_settings[channelClean].cooldowns
       );
 
